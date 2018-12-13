@@ -1,6 +1,9 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title"><%= @idea.title %></h5>
+    <h5 class="card-title">
+      <%= @idea.title %> 
+      <span class="badge badge-success">Likes: <%= @idea.votes_for.size %></span>
+    </h5>
     <h6 class="card-subtitle mb-2 text-muted"><%= @idea.user.email %></h6>
     <p class="card-text"><%= @idea.problem %></p>
     <p class="card-text"><%= @idea.people %></p>
@@ -8,14 +11,19 @@
     <% if @idea.user == current_user %>
       <%= link_to 'Edit', edit_idea_path(@idea), class: "card-link" %>
     <% end %>
-    <a href="#" class="card-link">Card link</a>
+    <% if current_user.voted_for? @idea %>
+      <a href="/ideas/<%= @idea.id %>/unlike" class="card-link">Unlike</a>
+    <% else %>
+      <a href="/ideas/<%= @idea.id %>/like" class="card-link">Like</a>
+    <% end %>
+    
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>
 
 <%= render 'comments/form' %>
 
-<% @idea.comments.each do |comment| %>
+<% @idea.comments.reverse_chron.each do |comment| %>
   <div class="card">
     <div class="card-body">
       <p><%= comment.content %></p>

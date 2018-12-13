@@ -1,5 +1,17 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  
+  def like
+    @idea = Idea.find(params[:id])
+    @idea.liked_by current_user
+    redirect_to @idea 
+  end
+  
+  def unlike
+    @idea = Idea.find(params[:id])
+    @idea.unliked_by current_user
+    redirect_to @idea 
+  end
 
   # GET /ideas
   # GET /ideas.json

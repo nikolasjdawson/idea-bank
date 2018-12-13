@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :ideas
+  resources :ideas do
+    member do 
+      get :like, :unlike 
+    end 
+  end
   devise_for :users
   root 'home#index'
 
