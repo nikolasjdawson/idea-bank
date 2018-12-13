@@ -1,8 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= @idea.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @idea.user.email %></h6>
+    <p class="card-text"><%= @idea.problem %></p>
+    <p class="card-text"><%= @idea.people %></p>
+    <p class="card-text"><%= @idea.solution %></p>
+    <% if @idea.user == current_user %>
+      <%= link_to 'Edit', edit_idea_path(@idea), class: "card-link" %>
+    <% end %>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>User:</strong>
-  <%= @idea.user %>
+  <%= @idea.user.email %>
 </p>
 
 <p>
