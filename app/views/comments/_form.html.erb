@@ -1,15 +1,15 @@
+<h4>What are your thoughts on this idea?</h4>
 
 <%= simple_form_for(@comment) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.association :idea %>
-    <%= f.input :content %>
+    <%= f.input :content, label: false %>
+    <%= f.input :idea_id, input_html: { value: params[:id] }, as: :hidden %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>

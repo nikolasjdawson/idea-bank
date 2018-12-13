@@ -13,32 +13,8 @@
   </div>
 </div>
 
-<p id="notice"><%= notice %></p>
+<%= render 'comments/form' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @idea.user.email %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @idea.title %>
-</p>
-
-<p>
-  <strong>Problem:</strong>
-  <%= @idea.problem %>
-</p>
-
-<p>
-  <strong>People:</strong>
-  <%= @idea.people %>
-</p>
-
-<p>
-  <strong>Solution:</strong>
-  <%= @idea.solution %>
-</p>
-
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<% @idea.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+<% end %>
