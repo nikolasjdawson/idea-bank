@@ -11,9 +11,15 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Popular Ideas</h5>
-        <% @popular_ideas.each do |idea| %>
-        
-        <% end %>
+        <table class="table">
+          <% @popular_ideas.each do |idea| %>
+            <tr>
+              <td><%= idea.title %></td>
+              <td><%= idea.votes_for.size %></td>
+              <td><%= idea.comments.count %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
